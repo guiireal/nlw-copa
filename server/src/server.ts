@@ -14,7 +14,7 @@ import { z } from "zod";
   });
 
   await fastify.register(cors, {
-    origin: "true",
+    origin: "http://localhost:3000",
   });
 
   fastify.get("/betting-pools/count", async () => {
