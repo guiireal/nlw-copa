@@ -109,7 +109,7 @@ export default function Home({
   );
 }
 
-export const getServerSideProps = async () => {
+export async function getServerSideProps() {
   const [{ data: bettingPoolData }, { data: guessData }, { data: userData }] =
     await Promise.all([
       api.get("/betting-pools/count"),
@@ -124,4 +124,4 @@ export const getServerSideProps = async () => {
       userCount: userData.count,
     },
   };
-};
+}
