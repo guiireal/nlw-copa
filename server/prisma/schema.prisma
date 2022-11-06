@@ -18,7 +18,62 @@ model BettingPool {
   id         String   @id @default(cuid())
   title      String
   code       String   @unique
+  owner_id   String?
   created_at DateTime @default(now())
 
+  owner        User?         @relation(fields: [owner_id], references: [id])
+  participants Participant[]
+
   @@map("betting_pools")
+}
+
+model Game {
+  id                       String   @id @default(cuid())
+  date                     DateTime
+  first_team_country_code  String
+  second_team_country_code String
+
+  guesses Guess[]
+
+  @@map("games")
+}
+
+model Guess {
+  id                 String   @id @default(cuid())
+  first_team_points  Int
+  second_team_points Int
+  created_at         DateTime @default(now())
+  game_id            String
+  participant_id     String
+
+  game        Game        @relation(fields: [game_id], references: [id])
+  participant Participant @relation(fields: [participant_id], references: [id])
+
+  @@map("guesses")
+}
+
+model Participant {
+  id              String @id @default(cuid())
+  user_id         String
+  betting_pool_id String
+
+  bettingPool BettingPool @relation(fields: [betting_pool_id], references: [id])
+  guesses     Guess[]
+  user        User        @relation(fields: [user_id], references: [id])
+
+  @@unique([user_id, betting_pool_id])
+  @@map("participants")
+}
+
+model User {
+  id         String   @id @default(cuid())
+  name       String
+  email      String   @unique
+  avatar_url String?
+  created_at DateTime @default(now())
+
+  ownBettingPools BettingPool[]
+  participatingAt Participant[]
+
+  @@map("users")
 }
