@@ -9,7 +9,7 @@ import { NativeBaseProvider, StatusBar } from "native-base";
 
 import { Loading } from "./src/components/Loading";
 import { AuthContextProvider } from "./src/contexts/AuthContext";
-import { NewBettingPool } from "./src/screens/NewBettingPool";
+import { BettingPools } from "./src/screens/BettingPools";
 import { THEME } from "./src/styles/theme";
 
 export default function App() {
@@ -27,7 +27,7 @@ export default function App() {
           backgroundColor="transparent"
           translucent
         />
-        {fontsLoaded ? <NewBettingPool /> : <Loading />}
+        {fontsLoaded ? <BettingPools /> : <Loading />}
       </AuthContextProvider>
     </NativeBaseProvider>
   );

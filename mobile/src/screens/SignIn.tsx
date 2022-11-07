@@ -16,7 +16,7 @@ export function SignIn() {
         onPress={signIn}
         leftIcon={<Icon as={Fontisto} name="google" color="white" size="md" />}
       >
-        entrar com o google
+        Entrar com o Google
       </Button>
       <Text color="white" textAlign="center" mt={4}>
         Não utilizamos nenhuma informação além{"\n"} do seu e-mail para criação
